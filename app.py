@@ -12,8 +12,8 @@ def user(name):
 
 
 @app.route('/new')
-def admin():
-    return redirect(url_for('user', name='Admin!'))
+def new():
+    return redirect("new.html")
 
 @app.route('/login')
 def login():
