@@ -8,7 +8,7 @@ def homepage():
     return render_template("home.html")
 
 # Login Page
-@app.route('/login')
+@app.route('/login') # Hello
 def login():
     pass
 
