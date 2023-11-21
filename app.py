@@ -1,6 +1,9 @@
 from flask import Flask, redirect, url_for, render_template
-#This is an example
+from flask_sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
+
+# SQLALchemy database
 
 # Home/About Page
 @app.route('/')
