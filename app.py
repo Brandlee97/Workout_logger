@@ -1,27 +1,26 @@
 from flask import Flask, redirect, url_for, render_template
-
+#This is an example
 app = Flask(__name__)
 
+# Home/About Page
 @app.route('/')
-def home():
+def homepage():
     return render_template("home.html")
 
-@app.route('/library')
-def user(name):
-    return f"hello {name}"
-
-
-@app.route('/new')
-def admin():
-    return redirect(url_for('user', name='Admin!'))
-
+# Login Page
 @app.route('/login')
 def login():
     pass
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+# Create a new workout
+@app.route('/create')
+def create():
+    pass
+
+# Look at past workouts
+@app.route('/history')
+def history():
+    pass
 
 if __name__ == "__main__":
     app.run(debug=True)
