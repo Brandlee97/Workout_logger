@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, render_template, request
 
 
 app = Flask(__name__)
@@ -23,7 +23,6 @@ def create():
 @app.route('/logs')
 def logs():
     return render_template("logs.html")
-
 
 if __name__ == "__main__":
     app.run(debug=True)
