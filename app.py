@@ -1,10 +1,15 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
+import requests
+from sqlalchemy import create_engine
+
 
 
 app = Flask(__name__)
 
 # SQLALchemy database
-
+engine = create_engine("sqlite+pysqlite:///:memory:", echo=True)
+with engine.connect() as conn:
+    result = connexecute(text("selecct "))
 # Home/About Page   **Done/Completed
 @app.route('/')
 def homepage():
@@ -24,5 +29,8 @@ def create():
 def logs():
     return render_template("logs.html")
 
+@app.route('/About_Us')
+def aboutUs():
+    return render_template("aboutUs.html")
 if __name__ == "__main__":
     app.run(debug=True)
