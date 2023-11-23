@@ -18,11 +18,12 @@ body{
 
 h1{
     position: relative;
+    font-size: 32px;
 }
 
 .buttons{   
     position: relative;
-    left: 65px;  
+    left: 40px;  
 }
 
 .button1{

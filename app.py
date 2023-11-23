@@ -7,9 +7,7 @@ from sqlalchemy import create_engine
 app = Flask(__name__)
 
 # SQLALchemy database
-engine = create_engine("sqlite+pysqlite:///:memory:", echo=True)
-with engine.connect() as conn:
-    result = connexecute(text("selecct "))
+
 # Home/About Page   **Done/Completed
 @app.route('/')
 def homepage():
