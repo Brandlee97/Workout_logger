@@ -40,9 +40,10 @@ def create():
     
 
 # Look at past workouts
-@app.route('/logged_workouts')
+@app.route('/logged_workouts', methods=['GET', 'POST'])
 def workout_logs():
     workouts = Workout.query.all()  
+    print(workouts)
     return render_template("logged_workouts.html", workouts=workouts)
 
 @app.route('/About_Us')
@@ -51,7 +52,7 @@ def aboutUs():
     
     
 # Deleting and editing logs
-@app.route('/delete/<int>:workout_id>', methods=['POST'])
+@app.route('/delete/<int:workout_id>', methods=['GET','POST'])
 def delete_exercise(workout_id):
     workout = Workout.query.get(workout_id)
     db.session.delete(workout)

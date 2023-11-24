@@ -8,11 +8,11 @@
 </head>
 <body>
     <div class="Wourkout form">
-        <form method="POST" action="/logged_workouts">
-            <input type="text" name="muscle_group" placeholder="Muscle Group">
+        <form method="POST" action="/saved_workout">
+            <input type="text" name="muscle_group" placeholder="Muscle Group" >
             <input type="text" name="exercise" placeholder="Exercise">
-            <input type="number" name="sets" placeholder="Sets">
-            <input type="number" name="reps" placeholder="Reps">
+            <input type="number" name="sets" placeholder="Sets" min=0 max=99 >
+            <input type="number" name="reps" placeholder="Reps" min=0 max=99 >
             <button type="submit">save</button>
         </form>
     </div>
