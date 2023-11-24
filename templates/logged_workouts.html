@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/logged_workout.css">
+    <title>Stupid Simple Workout Logger</title>
+</head>
+<body>
+    <div class="workout-data">
+        {% for workout in workouts %}
+            <div class="workout-data">
+                <p>Log {{ workout.id }}</p>
+                <p>Muscle Group: {{ workout.muscle_group }}</p>
+                <p>Exercise: {{ workout.exercise }}</p>
+                <p>Sets: {{ workout.sets }}</p>
+                <p>Reps: {{ workout.reps }}</p>
+                <br>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
