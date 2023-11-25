@@ -5,6 +5,7 @@ from database import db, Workout
 app = Flask(__name__)
 
 # SQLALchemy database
+app.config['SECRET_KEY'] = '0ded7bc9b1679e570d69b5320f550910'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///workout_database.db'
 db.init_app(app)
 
@@ -43,7 +44,6 @@ def create():
 @app.route('/logged_workouts', methods=['GET', 'POST'])
 def workout_logs():
     workouts = Workout.query.all()  
-    print(workouts)
     return render_template("logged_workouts.html", workouts=workouts)
 
 @app.route('/About_Us')
@@ -55,9 +55,10 @@ def aboutUs():
 @app.route('/delete/<int:workout_id>', methods=['GET','POST'])
 def delete_exercise(workout_id):
     workout = Workout.query.get(workout_id)
-    db.session.delete(workout)
-    db.session.commit()
-    flash("Exercise deleted")
+    if workout:
+        db.session.delete(workout)
+        db.session.commit()
+        flash("Exercise deleted")
     return redirect(url_for('workout_logs'))
 
 @app.route('/edit/<int:workout_id>', methods=['GET', 'POST'])
@@ -78,7 +79,7 @@ def edit_exercise(workout_id):
             return render_template('edit_workout.html', workout=workout)
     else:
         flash('Workout not found!')
-        return redirect(url_for('logged_workouts'))
+    return redirect(url_for('logged_workouts'))
     
 
 if __name__ == "__main__":

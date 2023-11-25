@@ -15,6 +15,14 @@
                 <p>Exercise: {{ workout.exercise }}</p>
                 <p>Sets: {{ workout.sets }}</p>
                 <p>Reps: {{ workout.reps }}</p>
+                <div>
+                    <form method="GET" action="/edit/{{ workout.id }}">
+                        <button type="submit">Edit</button>
+                    </form>
+                    <form method="POST" action="/delete/{{ workout.id }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
                 <br>
             </div>
         {% endfor %}
