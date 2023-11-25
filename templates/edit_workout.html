@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Edit Workout</h1>
-    <form method="POST" action="/edit/<int:workout_id>">
+    <form method="POST" action="/logged_workouts">
         <label for="exercise">Exercise:</label>
         <input type="text" id="exercise" name="exercise" value="{{ workout.exercise }}" required>
         
@@ -24,4 +24,3 @@
     </form>
 </body>
 </html>
-This form will
