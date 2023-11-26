@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from database import db, Workout
-
-
+from collections import defaultdict
+from datetime import datetime
 app = Flask(__name__)
 
 # SQLALchemy database
@@ -21,6 +21,7 @@ def homepage():
 def login():
     return render_template("login.html")
 
+# provides the user with a form to create a log for a specific exercise 
 @app.route('/workout_form')
 def workout_form():
     return render_template("workout_form.html")
@@ -33,8 +34,16 @@ def create():
         exercise = request.form['exercise']
         sets = int(request.form['sets'])
         reps = int(request.form['reps'])
-
-        created_workout = Workout(muscle_group=muscle_group, exercise=exercise, sets=sets, reps=reps)
+        workout_date_str = request.form['workout_date']
+        workout_date = datetime.strptime(workout_date_str, '%Y-%m-%d').date()
+        
+        created_workout = Workout(
+            muscle_group=muscle_group, 
+            exercise=exercise, 
+            sets=sets, 
+            reps=reps, 
+            date=workout_date)
+        
         db.session.add(created_workout)
         db.session.commit()
     return redirect(url_for('workout_logs'))
@@ -44,7 +53,12 @@ def create():
 @app.route('/logged_workouts', methods=['GET', 'POST'])
 def workout_logs():
     workouts = Workout.query.all()  
-    return render_template("logged_workouts.html", workouts=workouts)
+    workouts_by_date = defaultdict(list)
+    
+    for workout in workouts:
+        workouts_by_date[workout.date].append(workout)
+        
+    return render_template("logged_workouts.html", workouts=workouts, workouts_per_date=workouts_by_date)
 
 @app.route('/About_Us')
 def aboutUs():
@@ -61,26 +75,7 @@ def delete_exercise(workout_id):
         flash("Exercise deleted")
     return redirect(url_for('workout_logs'))
 
-@app.route('/edit/<int:workout_id>', methods=['GET', 'POST'])
-def edit_exercise(workout_id):
-    workout = Workout.query.get(workout_id)
-    if workout:
-        if request.method == 'POST':
-            workout.muscle_group = request.form['muscle_group']
-            workout.exercise = request.form['exercise']
-            workout.sets = int(request.form['sets'])
-            workout.reps = int(request.form['reps'])
-            
-            db.session.commit()
 
-            flash("Exercise Edit Successful")
-            return redirect(url_for('workout_logs'))
-        else:
-            return render_template('edit_workout.html', workout=workout)
-    else:
-        flash('Workout not found!')
-    return redirect(url_for('logged_workouts'))
-    
 
 if __name__ == "__main__":
     app.run(debug=True)

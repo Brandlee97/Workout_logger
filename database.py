@@ -8,5 +8,5 @@ class Workout(db.Model):
    exercise = db.Column(db.String(100), nullable=False)
    sets = db.Column(db.Integer, nullable=False)
    reps = db.Column(db.Integer, nullable=False)
+   date = db.Column(db.Date, nullable=False)
 
-    
