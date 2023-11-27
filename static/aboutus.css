@@ -1,12 +1,11 @@
 body {
     padding-top: 50px;
     background-color:  rgb(77, 160, 255);
-    background-image: url('Mike-Mentzer.jpg');
     background-size: cover;
     background-position: center;
 }
 
-h1{
+h2{
     text-align: center;
     color: white;
 }

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from database import db, Workout
+from database import db, Workout, Users
 from collections import defaultdict
 from datetime import datetime
 app = Flask(__name__)
@@ -12,13 +12,41 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
     
-# Home/About Page   **Done/Completed
-@app.route('/')
-def homepage():
-    return render_template("home.html")
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        existing_user = Users.query.filter_by(username=username).first()
+        if existing_user:
+            flash('Username already exists. Please choose a different one.')
+        else:
+            new_user = Users(username=username, password=password)
+            db.session.add(new_user)
+            db.session.commit()
+            flash('Registration successful!')
+            
+            return redirect(url_for('login'))
+    return render_template('signup.html')
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        if not username or not password:
+            flash('Please enter both username and password.')
+        else:
+            user = Users.query.filter_by(username=username).first()
+            if user and user.password == password:
+                # Successful login logic here
+                flash('Login successful!')
+                return redirect(url_for('workout_form'))
+            else:
+                flash('Invalid username or password.')
+    
     return render_template('login.html')
 
 # provides the user with a form to create a log for a specific exercise 

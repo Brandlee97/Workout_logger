@@ -1,9 +1,13 @@
-/* Adjusting padding for better spacing */
 body {
-    padding-top: 50px;
-}
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../static/pictures/arnold2.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    color: rgb(0, 110, 255); }
 
-/* Styling for the menu buttons */
 .menu-buttons {
     display: flex;
     justify-content: center;
@@ -13,42 +17,20 @@ body {
 }
 
 .menu-buttons button {
+    background-color: rgb(0, 110, 255);
+    color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 12px;
     transition: background-color 0.3s ease;
 }
 
-/* Color variations for different buttons */
-.button1 {
-    background-color: #007bff;
-    color: white;
-}
-
-.button2 {
-    background-color: #28a745;
-    color: white;
-}
-
-.button3 {
-    background-color: #ffc107;
-    color: black;
-}
-
-.button4 {
-    background-color: #dc3545;
-    color: white;
-}
-
-/* Hover effect on buttons */
 .menu-buttons button:hover {
     opacity: 0.8;
 }
 
-/* Styling for workout entries */
 .workout-entry {
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
@@ -56,4 +38,25 @@ body {
 
 .workout-entry p {
     margin: 5px 0;
+}
+
+.button-group {
+    display: flex;
+    justify-content: left;
+    margin-top: 20px;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Change to match your button color */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth hover transition */
+}
+
+.button-group button:hover {
+    background-color: #0056b3; /* Change to match hover color */
 }

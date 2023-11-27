@@ -1,9 +1,19 @@
 /* Adjusting padding for better spacing */
+
 body {
-    padding-top: 50px;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../static/pictures/arnold.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+
 }
-h1{
+
+h2{
     text-align: center;
+    color: white;
 }
 
 /* Centering the form and adjusting its width */
@@ -63,35 +73,24 @@ form button:hover {
 }
 
 .menu-buttons button {
+    background-color: rgb(0, 110, 255); /* Set initial button color */
+    color: white; /* Set text color */
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 12px;
     transition: background-color 0.3s ease;
 }
-
-/* Color variations for different buttons */
-.button1 {
-    background-color: #007bff;
-    color: white;
+.button1, button2, button3, button4:hover{
+    background-color: #0056b3;
 }
 
-.button2 {
-    background-color: #28a745;
-    color: white;
+input[type="submit"]:hover {
+    background-color: #0056b3;
 }
-
-.button3 {
-    background-color: #ffc107;
-    color: black;
-}
-
-.button4 {
-    background-color: #dc3545;
-    color: white;
-}
-
 /* Hover effect on buttons */
+.menu-buttons button:hover {
+    opacity: 0.8;
+}
 .menu-buttons button:hover {
     opacity: 0.8;
 }
